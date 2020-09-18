@@ -28,8 +28,3 @@ module.exports = {
   }
 };
 
-if (isProduction) {
-  config.plugins.push(new MiniCssExtractPlugin({
-    filename: "[name].css",
-  }));
-};
