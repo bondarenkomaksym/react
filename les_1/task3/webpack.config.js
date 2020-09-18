@@ -8,12 +8,7 @@ module.exports = {
     },
     {
       test: /.css$/,
-      use: [
-        isProduction ?
-          MiniCssExtractPlugin.loader :
-          "style-loader",
-        "css-loader"
-      ]
+      use: ["style-loader", "css-loader"]
     }
     ],
   },
