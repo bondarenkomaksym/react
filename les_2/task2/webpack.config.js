@@ -23,7 +23,7 @@ module.exports = (env, argv) => {
               ? MiniCssExtractPlugin.loader
               : "style-loader",
             "css-loader",
-            "sass-loader",
+
           ]
         }
       ],
