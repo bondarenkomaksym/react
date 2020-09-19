@@ -9,9 +9,7 @@ const element = (
     <form className="login-form">
       <h1 className="form-title">Profile</h1>
       <div className="form-control">
-        <label className="form-label" htmlFor="name">
-          Name
-        </label>
+        <label className="form-label" htmlFor="name">Name</label>
         <input
           className="form-input"
           type="text"
@@ -21,17 +19,13 @@ const element = (
         />
       </div>
       <div className="form-control">
-        <label className="form-label" id="age" htmlFor="age">
-          Age
-        </label>
+        <label className="form-label" id="age" htmlFor="age">Age</label>
         <input className="form-input" type="number" value="17" name="age" />
         <span style={style}>To young</span>
       </div>
-      <button className="submit-button" type="submit">
-        Submit
-      </button>
+      <button className="submit-button" type="submit">Submit</button>
     </form>
-  </main>
+  </main >
 );
 
 ReactDOM.render(element, rootElem);
