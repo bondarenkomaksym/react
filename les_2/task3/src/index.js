@@ -4,8 +4,31 @@ import "./styles.css";
 
 const rootElem = document.querySelector("#root");
 
-const element = (
-  <div className="seconds">{new Date().toDateString()}</div>
-);
+//для динамической отрисовки создаём функцию
 
-ReactDOM.render(element, rootElem);
+const renderSeconds = time => {
+
+  const seconds = new Date(time).getSeconds();
+  const backgroundColor = seconds % 2 === 0 ? "black" : "white";
+  const textColor = seconds % 2 !== 0 ? "black" : "white";
+
+  const styles = {
+    color: textColor,
+    backgroundColor
+  }
+
+  const element = (
+    <div
+      className="seconds"
+      style={styles}
+    >
+      Now is {seconds}
+    </div>
+  );
+
+  ReactDOM.render(element, rootElem);
+}
+
+renderSeconds(new Date());
+
+setInterval(() => renderSeconds(new Date()), 1000);
