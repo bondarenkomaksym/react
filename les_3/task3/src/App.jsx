@@ -3,7 +3,7 @@ import Comment from "./Comment";
 
 const userInfo = {
   name: "Tom",
-  avatarUrl: "https://avatars1.githubusercontent.com",
+  avatarUrl: "https://www.facebook.com/photo/?fbid=1315760858451737&set=pob.100000535078522",
 };
 
 const App = () => {
