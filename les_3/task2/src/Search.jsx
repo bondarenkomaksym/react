@@ -1,16 +1,32 @@
-import React from "react";
+import React, { Component } from "react";
 import "./search.scss";
 
-const Search = (props) => {
-  return (
-    <div className="search">
-      <h1 className="search__title">{`Hello, ${props.name}. What to search for you?`}</h1>
-      <div className="search__field">
-        <input type="text" className="search__input" />
-        <button className="search__button">Search</button>
+// const Search = (props) => {
+//   return (
+//     <div className="search">
+//       <h1 className="search__title">{`Hello, ${props.name}. What to search for you?`}</h1>
+//       <div className="search__field">
+//         <input type="text" className="search__input" />
+//         <button className="search__button">Search</button>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+class Search extends Component {
+  render() {
+    console.log(this.props);
+    return (
+      <div className="search">
+        <h1 className="search__title">{`Hello, ${this.props.name}. What to search for you?`}</h1>
+        <div className="search__field">
+          <input type="text" className="search__input" />
+          <button className="search__button">Search</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Search
