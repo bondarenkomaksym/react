@@ -3,7 +3,7 @@ import moment from "moment";
 
 const Greeting = (props) => {
   // console.log(props);
-  const age = moment(new Date()).diff(moment(props.birthDate), 'years');
+  const age = moment().diff(moment(props.birthDate), 'years');
   return (
     <div className="greeting">
       {`My name is ${props.firstName} ${props.lastName}. 
