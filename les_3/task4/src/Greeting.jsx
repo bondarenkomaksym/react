@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 
 const Greeting = (props) => {
+  // console.log(props);
   const age = moment(new Date()).diff(moment(props.birthDate), 'years');
   return (
     <div className="greeting">
