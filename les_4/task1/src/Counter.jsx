@@ -1,12 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
+import "./counter.scss";
 
+class Counter extends Component {
+  constructor(props) {
+    super(props);
 
-const App = () => {
-  return (
-    <div>0</div>
-  )
+    this.state = {
+      counter: props.start,
+    }
+
+    // Do not do this way
+    setInterval(() => {
+      //с помощью setState изменяем состояние счётчика
+      this.setState({
+        counter: this.state.counter + 1
+      });
+    }, props.interval);
+  }
+
+  render() {
+    return (
+      <div className="counter">{this.state.counter}</div>
+    );
+  }
 }
 
-export default App;
+export default Counter;
 
 
