@@ -1,21 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import React, { Component } from "react";
-import "./index.scss";
 
-const rootElem = document.querySelector("#root");
+const Greeting = (props) => {
+  return (
+    <div className="greeting">
+      {`My name is ${props.firstName} ${props.lastName}. 
+      I'm ${props.birthDate} years old`}
+    </div>
+  );
+};
 
-class Greeting extends Component {
-  render() {
-    console.log(this.props);
-    return (
-      <div className="greeting">
-        My name is `${firstName} ${lastName}`. I'm 17 years old
-      </div>
-    );
-  }
-}
+export default Greeting
 
-export default Search
 
-ReactDOM.render(<Greeting  />, rootElem);
