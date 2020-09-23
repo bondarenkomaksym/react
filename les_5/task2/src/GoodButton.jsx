@@ -6,7 +6,7 @@ class GoodButton extends React.Component {
   //объявляем обработчик в виде метода
   handleClick(e) {
     //в консоль выводим объект события(е)
-    console.log(e.target.textContent);
+    // console.log(e.target.textContent);
     alert("Good job!");
   }
   //для лучшей читаемости JSX обработчик(handleClick) выносим наружу
