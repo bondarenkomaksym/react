@@ -4,10 +4,10 @@ import React from "react";
 
 class GoodButton extends React.Component {
   //объявляем обработчик в виде метода
-  handleClick() {
+  handleClick(e) {
     //в консоль выводим объект события(е)
     // console.log(e.target.textContent);
-    alert("Good job!");
+    alert(e.target.textContent);
   }
   //для лучшей читаемости JSX обработчик(handleClick) выносим наружу
   render() {
