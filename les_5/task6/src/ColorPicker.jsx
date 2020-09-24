@@ -16,7 +16,7 @@ class ColorPicker extends React.Component {
 
   reset = () => {
     this.setState({
-      color: '',
+      color: "",
     });
   };
 
