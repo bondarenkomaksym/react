@@ -23,13 +23,13 @@ class ColorPicker extends React.Component {
   render() {
     return (
       <div>
-        <div class="picker__title">
+        <div className="picker__title">
           {this.state.color}
         </div>
         <div>
-          <button class="picker__button picker__button_coral" onMouseEnter={() => this.setColor("Coral")} onMouseLeave={this.reset}></button>
-          <button class="picker__button picker__button_aqua" onMouseEnter={() => this.setColor("Aqua")} onMouseLeave={this.reset}></button>
-          <button class="picker__button picker__button_bisque" onMouseEnter={() => this.setColor("Bisque")} onMouseLeave={this.reset}></button>
+          <button className="picker__button picker__button_coral" onMouseEnter={() => this.setColor("Coral")} onMouseLeave={this.reset}></button>
+          <button className="picker__button picker__button_aqua" onMouseEnter={() => this.setColor("Aqua")} onMouseLeave={this.reset}></button>
+          <button className="picker__button picker__button_bisque" onMouseEnter={() => this.setColor("Bisque")} onMouseLeave={this.reset}></button>
         </div>
       </div>
     );
