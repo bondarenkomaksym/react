@@ -24,7 +24,7 @@ class ColorPicker extends React.Component {
     return (
       <div>
         <div class="picker__title">
-          {`${this.state.color}`}
+          {this.state.color}
         </div>
         <div>
           <button class="picker__button picker__button_coral" onMouseOver={() => this.setColor("Coral")} onMouseOut={this.reset}></button>
