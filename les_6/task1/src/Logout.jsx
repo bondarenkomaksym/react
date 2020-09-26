@@ -1,9 +1,6 @@
+import React from 'react';
 
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.scss";
-import GoodButton from "./GoodButton.jsx";
-
-const rootElement = document.querySelector("#root");
-
-ReactDOM.render(<GoodButton />, rootElement);
+const Logout = ({ onLogout }) => <button
+  onClick={() => onLogout()}
+  className="btn logout">Logout</button>
+export default Logout;
