@@ -8,18 +8,18 @@ class Auth extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
     };
   }
   handleLogin = () => {
     this.setState({
-      isLoggedIn: true
+      isLoggedIn: true,
     })
   }
 
   handleLogout = () => {
     this.setState({
-      isLoggedIn: false
+      isLoggedIn: false,
     })
   }
   render() {
