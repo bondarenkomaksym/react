@@ -27,6 +27,7 @@ class Auth extends React.Component {
 
 
   loginHandler = () => {
+
     this.setState({
       isLoggedIn: true,
     })
@@ -39,9 +40,10 @@ class Auth extends React.Component {
   }
 
 
+
   render() {
     const { isLoggedIn } = this.state;
-
+    // debugger;
     return (
       <>
         { !isLoggedIn && <Login onLogin={this.loginHandler}></Login>}
