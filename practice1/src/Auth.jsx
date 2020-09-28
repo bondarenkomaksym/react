@@ -1,37 +1,58 @@
 import React from "react";
 import Login from "./Login";
 import Logout from "./Logout";
-import Logout from "./Spinner";
+import Spinner from "./Spinner";
 
+//1. Auth to class +++
+//2. store isLoggedIn, isLoading in state +++
+//3. handlers for login, logout +++
+//4. 
 
 class Auth extends React.Component {
-  constructor(props) {
-    super(props);
+  //first var
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      isLoggedIn: true,
-    };
+  //   this.state = {
+  //     isLoggedIn: false,
+  //     isLoading: false
+  //   }
+  // }
+
+  //second var
+  state = {
+    isLoggedIn: false,
+    isLoading: false
   }
-  handleLogin = () => {
+
+
+  loginHandler = () => {
     this.setState({
       isLoggedIn: true,
     })
   }
 
-  handleLogout = () => {
+  logoutHandler = () => {
     this.setState({
       isLoggedIn: false,
     })
   }
+
+
   render() {
+    const { isLoggedIn } = this.state;
+
     return (
       <>
-        {!this.state.isLoggedIn
-          ? <Login onLogin={this.handleLogin} />
-          : <Logout onLogout={this.handleLogout} />}
+        { !isLoggedIn && <Login onLogin={this.loginHandler}></Login>}
+        { isLoggedIn && <Logout></Logout>}
+        { <Spinner></Spinner>}
       </>
     )
   }
-}
+
+
+
+};
 
 export default Auth;
