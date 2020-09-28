@@ -12,10 +12,9 @@ class Auth extends React.Component {
 
 
   loginHandler = () => {
-
     this.setState({
-
       isLoading: true,
+
     })
     setTimeout(() => {
       this.setState({
@@ -23,7 +22,6 @@ class Auth extends React.Component {
         isLoading: false,
       });
     }, 1000)
-
   }
 
   logoutHandler = () => {
@@ -38,9 +36,9 @@ class Auth extends React.Component {
 
     return (
       <>
-        { !isLoggedIn, !isLoading && <Login onLogin={this.loginHandler}></Login>}
-        { isLoggedIn && <Logout onLogout={this.logoutHandler}></Logout>}
+        { !isLoggedIn && <Login onLogin={this.loginHandler}></Login>}
         { isLoading && <Spinner size={60} ></Spinner>}
+        { isLoggedIn && <Logout onLogout={this.logoutHandler}></Logout>}
       </>
     )
   }
