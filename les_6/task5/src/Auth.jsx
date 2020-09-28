@@ -38,7 +38,7 @@ class Auth extends React.Component {
 
     return (
       <>
-        { !isLoggedIn && <Login onLogin={this.loginHandler}></Login>}
+        { !isLoggedIn, !isLoading && <Login onLogin={this.loginHandler}></Login>}
         { isLoggedIn && <Logout onLogout={this.logoutHandler}></Logout>}
         { isLoading && <Spinner size={60} ></Spinner>}
       </>
