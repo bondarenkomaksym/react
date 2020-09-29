@@ -1,10 +1,13 @@
 import React from 'react';
 
-const Transaction = ({ from, to, amount, rate, id }) => {
+const Transaction = ({ from, to, amount, rate, time }) => {
   return (
-    <li className="transaction" key={id}>
-      <span className="transaction__date">1</span>
-      <span className="transaction__time">2</span>
+    <li className="transaction">
+      <span className="transaction__date"></span>
+      <span className="transaction__time">{time}</span>
+      <span className="transaction__assets">{from}→{to}</span>
+      <span className="transaction__rate">{rate}</span>
+      <span className="transaction__amount">{amount}</span>
     </li>
   )
 }
