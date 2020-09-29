@@ -1,8 +1,7 @@
 import React from 'react';
 
 //деструктуризация параметров прямо в аргументах функции
-const Logout = () => {
-  return <button className="logout btn">Logout</button>
-}
-
+const Logout = ({ onLogout }) => <button
+  onClick={() => onLogout()}
+  className="btn logout">Logout</button>
 export default Logout;

@@ -1,11 +1,8 @@
 import React from 'react';
 
 //деструктуризация параметров прямо в аргументах функции
-const Login = ({ onLogin }) => {
-
-  // debugger;
-
-  return <button className="login btn" onClick={onLogin}>Login</button>
-}
+const Login = ({ onLogin }) => <button
+  onClick={() => onLogin()}
+  className="btn login">Login</button>
 
 export default Login;
