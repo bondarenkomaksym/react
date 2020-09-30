@@ -1,45 +1,42 @@
 import React from 'react';
 import User from './User';
-
+import Pagination from "./Pagination";
 
 class UsersList extends React.Component {
+
   state = {
-    sorting: null,
-  }
+    currentPage: 0,
+    itemsPerPage: 3
+  };
 
+  goPrev = () => {
+    this.setState({
+      currentPage: this.state.currentPage - 1,
+    });
+  };
 
-  toggleSorting = () => {
-    const newSorting = this.state.sorting === 'asc'
-      ? 'desc'
-      : 'asc';
-    this.setState({ sorting: newSorting })
-  }
-
+  goNext = () => {
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
+  };
 
   render() {
-
-    let usersList;
-    if (this.state.sorting) {
-      usersList = this.props.users
-        .slice()
-        .sort((a, b) => this.state.sorting === 'asc'
-          ? a.age - b.age
-          : b.age - a.age)
-    } else {
-      usersList = this.props.users;
-    }
 
 
     return (
       <div>
-
-        <button className="btn" onClick={this.toggleSorting}>{
-          this.state.sorting || '-'
-        }</button>
-
+        <Pagination
+          goPrev={this.goPrev}
+          goNext={this.goNext}
+          currentPage={}
+          itemsPerPage={}
+          totalItems={}
+        />
         <ul className="users">
-          {usersList.map(user => <User key={user.id} {...user} />
-          )}
+          {usersList.map((user) => (
+            <User key={user.id} {...user} />
+          ))}
         </ul>
       </div>
     );
@@ -50,4 +47,5 @@ class UsersList extends React.Component {
 //в элементах списка должно быть свойство key={}
 //ключ должен находится в том файле который отрисовывает список
 //{...user} такая запись в свойствах элемента позволяет передать все свойства из нашего объекта
+
 export default UsersList;

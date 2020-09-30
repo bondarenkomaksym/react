@@ -24,8 +24,28 @@ const users = [
   },
   {
     id: 'id-3',
-    age: 45,
+    age: 34,
     name: 'Sam',
+  },
+  {
+    id: 'id-4',
+    age: 54,
+    name: 'Alex',
+  },
+  {
+    id: 'id-5',
+    age: 56,
+    name: 'Bill',
+  },
+  {
+    id: 'id-6',
+    age: 23,
+    name: 'John',
+  },
+  {
+    id: 'id-7',
+    age: 32,
+    name: 'Alice',
   },
 ];
 
