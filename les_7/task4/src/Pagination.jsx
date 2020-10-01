@@ -13,13 +13,17 @@ const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) =
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   //отрисовка состояния кнопок
-  if (currentPage === 0) {
-    isPrevPageAvaible = true;
-  }
+  // if (currentPage === 0) {
+  //   isPrevPageAvaible = true;
+  // }
 
-  if (currentPage === totalPages - 1) {
-    isNextPageAvaible = true;
-  }
+  // if (currentPage === totalPages - 1) {
+  //   isNextPageAvaible = true;
+  // }
+
+  //отрисовка состояния кнопок 2
+  currentPage === 0 ? isPrevPageAvaible = true : false;
+  currentPage === totalPages - 1 ? isNextPageAvaible = true : false;
 
   return (
     <div className="pagination">
