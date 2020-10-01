@@ -38,8 +38,8 @@ class UsersList extends React.Component {
     //высчитываем кол поль-лей
     const currentPage = this.state.currentPage;
 
-    const startIndex = currentPage * 3;
-    const endIndex = startIndex + 3;
+    const startIndex = currentPage * this.state.itemsPerPage;
+    const endIndex = startIndex + this.state.itemsPerPage;
     //через slice режем начальный массив поль-лей
     const usersToDisplay = users.slice(startIndex, endIndex);
 
