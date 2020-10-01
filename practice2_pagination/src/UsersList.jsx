@@ -9,7 +9,8 @@ import User from './User';
 //4. display data +++
 //5. calculate users to display+++
 
-
+//input: arrays of objects
+//output: список поль-лей с кнопками
 class UsersList extends React.Component {
 
   state = {
@@ -18,14 +19,16 @@ class UsersList extends React.Component {
   };
 
   goPrev = () => {
-
-
-  }
+    this.setState({
+      currentPage: this.state.currentPage - 1,
+    });
+  };
 
   goNext = () => {
-
-
-  }
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
+  };
 
   render() {
 
@@ -42,7 +45,13 @@ class UsersList extends React.Component {
 
     return (
       <div>
-        <Pagination />
+        <Pagination
+          goPrev={this.goPrev}
+          goNext={this.goNext}
+          currentPage={this.state.currentPage}
+          itemsPerPage={this.state.itemsPerPage}
+          totalItems={this.props.users.length}
+        />
         <ul className="users">
           {usersToDisplay.map((user) => (
             <User key={user.id} {...user} />

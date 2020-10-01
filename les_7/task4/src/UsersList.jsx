@@ -1,7 +1,16 @@
 import React from 'react';
+import Pagination from './Pagination';
 import User from './User';
-import Pagination from "./Pagination";
 
+
+//1. create state - currPage, totalItems +++
+//2. goPrev goNext
+//3. create test data +++
+//4. display data +++
+//5. calculate users to display+++
+
+//input: arrays of objects
+//output: список поль-лей с кнопками
 class UsersList extends React.Component {
 
   state = {
@@ -23,18 +32,28 @@ class UsersList extends React.Component {
 
   render() {
 
+    //принимаем список поль-лей
+    const users = this.props.users;
+
+    //высчитываем кол поль-лей
+    const currentPage = this.state.currentPage;
+
+    const startIndex = currentPage * 3;
+    const endIndex = startIndex + 3;
+    //через slice режем начальный массив поль-лей
+    const usersToDisplay = users.slice(startIndex, endIndex);
 
     return (
       <div>
         <Pagination
           goPrev={this.goPrev}
           goNext={this.goNext}
-          currentPage={}
-          itemsPerPage={}
-          totalItems={}
+          currentPage={this.state.currentPage}
+          itemsPerPage={this.state.itemsPerPage}
+          totalItems={this.props.users.length}
         />
         <ul className="users">
-          {usersList.map((user) => (
+          {usersToDisplay.map((user) => (
             <User key={user.id} {...user} />
           ))}
         </ul>
@@ -42,10 +61,5 @@ class UsersList extends React.Component {
     );
   }
 }
-
-
-//в элементах списка должно быть свойство key={}
-//ключ должен находится в том файле который отрисовывает список
-//{...user} такая запись в свойствах элемента позволяет передать все свойства из нашего объекта
 
 export default UsersList;

@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+
+//input: func-s for prev/next, number, number, number
+//output: кнопки и номер страницы
 
 const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) => {
 
+  let isPrevPageAvaible = false;
+  let isNextPageAvaible = false;
 
   //номер текущей страницы через количество страниц
   //используем Math.ceil чтобы показать остаток юзеров
@@ -26,6 +31,8 @@ const Pagination = ({ goPrev, goNext, currentPage, totalItems, itemsPerPage }) =
         {isNextPageAvaible ? "" : "→"}
       </button>
     </div>
-  );
+  )
+
 };
+
 export default Pagination;
