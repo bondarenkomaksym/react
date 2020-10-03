@@ -1,44 +1,38 @@
 import React from "react";
 
 class ConnectionStatus extends React.Component {
+
   state = {
-    width: null,
-    height: null,
+    status: "online",
+  };
+
+  //после изменения статуса обновляем состояние state
+  changeStatus = (e) => {
+    this.setState({
+      status: e.type,
+    });
   };
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResize);
-
-    const { innerWidth, innerHeight } = window;
-    //установка заголовка по умолчанию
-    this.setDemensions(innerWidth, innerHeight);
+    window.addEventListener("online", this.changeStatus);
+    window.addEventListener("offline", this.changeStatus);
   }
-  //отписка от события
+
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize);
-  }
-  //после изменения размера обновляем состояние state
-  onResize = (e) => {
-    const { innerWidth, innerHeight } = e.target;
-    this.setDemensions(innerWidth, innerHeight);
+    window.removeEventListener("online", this.changeStatus);
+    window.removeEventListener("offline", this.changeStatus);
   }
 
-  //чтобы не было дублирования кода
-  setDemensions = (width, height) => {
-    this.setState({
-      width,
-      height,
-    });
-    document.title = `${innerWidth} x ${innerHeight}`;
-  };
-
+  //меняем название класса элемента
+  toggleTextBlock = (status) =>
+    `status ${status === "offline" ? "status_offline" : ""}`;
 
   render() {
     return (
-      <div className="dimensions">
-        {`${innerWidth}px - ${innerHeight}px`}
+      <div className={this.toggleTextBlock(this.state.status)}>
+        {this.state.status}
       </div>
-    )
+    );
   }
 }
 
