@@ -9,8 +9,8 @@ class UserForm extends React.Component {
     this.props.onSubmit(Object.fromEntries(formData));
   }
 
-  setRef = node => {
-    this.formRef = node
+  setRef = form => {
+    this.formRef = form
   }
 
   render() {
