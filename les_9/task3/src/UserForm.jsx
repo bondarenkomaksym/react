@@ -3,20 +3,21 @@ import React from "react";
 class UserForm extends React.Component {
   //если форма НЕконтролируемая, то начальные занчения не нужны
 
-  handleSubmit = e => {
-    e.preventDefault();
+  handleSubmit = event => {
+    event.preventDefault();
     const formData = [... new FormData(this.formRef)];
     this.props.onSubmit(Object.fromEntries(formData));
   }
 
-  setRef = form => {
+
+  ref = form => {
     this.formRef = form
   }
 
   render() {
     // const { name, student, occupation, about } = this.state;
     return (
-      <form ref={this.setRef} className="login-form" onSubmit={this.handleSubmit}>
+      <form ref={this.ref} className="login-form" onSubmit={this.handleSubmit}>
         <h1 className="form-title">Profile</h1>
         <div className="form-control">
           <label className="form-label" htmlFor="name">Name</label>
