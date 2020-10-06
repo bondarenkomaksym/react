@@ -8,6 +8,7 @@ class ConnectionStatus extends React.Component {
 
   //после изменения статуса обновляем состояние state
   changeStatus = (event) => {
+    // console.log(event);
     this.setState({
       status: event.type,
     });
