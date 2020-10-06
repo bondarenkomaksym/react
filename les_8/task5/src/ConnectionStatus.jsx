@@ -7,9 +7,9 @@ class ConnectionStatus extends React.Component {
   };
 
   //после изменения статуса обновляем состояние state
-  changeStatus = (e) => {
+  changeStatus = (event) => {
     this.setState({
-      status: e.type,
+      status: event.type,
     });
   };
 
@@ -23,16 +23,13 @@ class ConnectionStatus extends React.Component {
     window.removeEventListener("offline", this.changeStatus);
   }
 
-  //меняем название класса элемента
-  toggleTextBlock = (status) =>
-    `status ${status === "offline" ? "status_offline" : ""}`;
 
   render() {
+    const { status } = this.state;
+    const toggleClass = status !== 'online' ? "status status_offline" : "status";
     return (
-      <div className={this.toggleTextBlock(this.state.status)}>
-        {this.state.status}
-      </div>
-    );
+      <div className={toggleClass}>{status}</div>
+    )
   }
 }
 
