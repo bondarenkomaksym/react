@@ -10,14 +10,14 @@ class UserForm extends React.Component {
   }
 
 
-  ref = form => {
-    this.formRef = form
+  setRef = node => {
+    this.formRef = node
   }
 
   render() {
     // const { name, student, occupation, about } = this.state;
     return (
-      <form ref={this.ref} className="login-form" onSubmit={this.handleSubmit}>
+      <form ref={this.setRef} className="login-form" onSubmit={this.handleSubmit}>
         <h1 className="form-title">Profile</h1>
         <div className="form-control">
           <label className="form-label" htmlFor="name">Name</label>
