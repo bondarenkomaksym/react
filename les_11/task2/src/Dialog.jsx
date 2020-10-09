@@ -9,7 +9,7 @@ const Dialog = ({ isOpen, children, title, onClose }) => {
     <div className="dialog">
 
       <div className="dialog__heading">
-        <div className="title">{title}</div>
+        <h4 className="dialog__title">{title}</h4>
         <button className="dialog__close-btn" onClick={onClose}>+</button>
       </div>
       <div className="dialog__content">{children}</div>
