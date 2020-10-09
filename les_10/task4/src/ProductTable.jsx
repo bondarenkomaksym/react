@@ -9,7 +9,7 @@ const ProductTable = ({ filterText, inStockOnly, products }) => {
   let lastCategory = null;
 
   products.forEach((product) => {
-    if (product.name.indexOf(filterText) === -1) {
+    if (product.name.toLowerCase().indexOf(filterText) === -1 && product.name.toUpperCase().indexOf(filterText) === -1) {
       return;
     }
     if (inStockOnly && !product.stocked) {
