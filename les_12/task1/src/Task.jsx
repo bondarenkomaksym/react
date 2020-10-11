@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 
-
 const Task = ({ text, done, onChange, id, onDelete }) => {
   //в функцию classNames передаём тот класс, который должен быть на выходе всегда, а вторым аргументом передаём ОБЪЕКТ в котором ключ - это вторая часть названия класса, а его значение - это булеан(вкл/выкл)
   const listItemClasses = classNames(`list-item`, { 'list-item_done': done });
