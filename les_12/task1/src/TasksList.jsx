@@ -1,80 +1,72 @@
 import React from "react";
 import Task from "./Task";
 import CreateTaskInput from "./CreateTaskInput";
-
+import { createTask, fetchTasksList, updateTask, deleteTask } from "./tasksGateway";
 
 
 class TasksList extends React.Component {
   state = {
-    tasks: [
-      {
-        "id": "1",
-        "text": "International Factors Strategist",
-        "done": false
-      },
-      {
-        "id": "2",
-        "text": "District Infrastructure Executive",
-        "done": false
-      },
-      {
-        "id": "3",
-        "text": "Dynamic Assurance Analyst",
-        "done": true
-      },
-      {
-        "id": "4",
-        "text": "District Security Planner",
-        "done": true
-      },
-      {
-        "id": "5",
-        "text": "Direct Web Architect",
-        "done": false
-      },
-    ]
+    tasks: []
+  }
+
+  componentDidMount() {
+    this.fetchTasks();
+  }
+
+
+  fetchTasks = () => {
+    fetchTasksList()
+      .then(tasksList => this.setState({
+        tasks: tasksList,
+      }));
   }
 
   //метод принимает текст из инпута(CreateTaskInput)
   onCreate = text => {
+    //1. создаём задачу
+    //2. постим на сервер
+    //3. fetch list from server
     const newTask = {
-      id: Math.random(),
       text,
       done: false,
     };
 
+    createTask(newTask).then(() => this.fetchTasks());
+
     // и полученные свойства добавляем в существующий массив задач
-    const { tasks } = this.state;
-    const updatedTasks = tasks.concat(newTask);
-    this.setState({ tasks: updatedTasks });
+    //   const { tasks } = this.state;
+    //   const updatedTasks = tasks.concat(newTask);
+    //   this.setState({ tasks: updatedTasks });
   }
 
   //метод зачёркивает задачу
   handleTaskStatusChange = (id) => {
     //1. найти задачу в списке
-    //2. переключить вкл/выкл
-    //3. сохранить обновлённый список
-    const updatedTasks = this.state.tasks.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-          done: !task.done
-        }
-      }
-      return task;
-    });
-    //результат метода сохраняем в состояние
-    this.setState({ tasks: updatedTasks });
+    //2. создать обновлённый список
+    //3. обновить список на сервере
+    //4. Fetch updated list
+    const { done, text } = this.state.tasks.find(task => task.id === id);
+    const updatedTasks = {
+      text,
+      done: !done,
+    };
+
+    updateTask(id, updatedTasks)
+      .then(() => this.fetchTasks());
   }
+
 
   //метод удаления задачи
   handleTaskDelete = (id) => {
     //1. фильтруем задачи
     //2. обновляем список задач
-    const updatedTasks = this.state.tasks
-      .filter(task => task.id !== id);
-    //результат метода сохраняем в состояние
-    this.setState({ tasks: updatedTasks });
+    deleteTask(id)
+      .then(() => this.fetchTasks());
+
+    // const updatedTasks = this.state.tasks
+    //   .filter(task => task.id !== id);
+    // //результат метода сохраняем в состояние
+    // this.setState({ tasks: updatedTasks });
   }
 
 
@@ -85,7 +77,7 @@ class TasksList extends React.Component {
       .sort((a, b) => a.done - b.done);
 
     return (
-      <main className="todo-list">
+      <main className="todo-list" >
         <CreateTaskInput onCreate={this.onCreate} />
         <ul className="list">
           {sortedList.map(task => (

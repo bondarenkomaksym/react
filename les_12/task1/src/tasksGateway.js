@@ -1,39 +1,52 @@
-const baseUrl = "https://5f577f7f1a07d600167e6e96.mockapi.io/tasks";
+const baseUrl = "https://crudcrud.com/api/980d1bd0aa114a8d89d8a4b17df8ecf4/tasks";
 
-export const fetchTasksList = () => fetch(baseUrl)
-  .then(res => res.json());
 
-export const createTask = taskData =>
-  fetch(baseUrl, {
+export const createTask = taskData => {
+  //параметры передачи на сервер и в then проверяем статус
+  return fetch(baseUrl, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(taskData)
-  }).then(res => {
-    if (!res.ok) {
-      throw new Error('Failed to create task')
+    headers: { 'Content-Type': 'application/json; utc-8' },
+    body: JSON.stringify(taskData),
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error("fail to create task");
     }
-  });
+  })
+}
 
-export const updateTask = (taskId, taskData) =>
-  fetch(`${baseUrl}/${taskId}`, {
+export const fetchTasksList = () => {
+  return fetch(baseUrl).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+  })
+    .then(tasksList =>
+      tasksList.map(({ _id, ...task }) => ({
+        id: _id,
+        ...task,
+      }))
+    )
+}
+
+
+export const updateTask = (taskId, taskData) => {
+  return fetch(`${baseUrl}/${taskId}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(taskData)
-  }).then(res => {
-    if (!res.ok) {
-      throw new Error('Failed to update task')
+    headers: { 'Content-Type': 'application/json; utc-8' },
+    body: JSON.stringify(taskData),
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error("fail to create task");
     }
-  });
+  })
+}
 
-export const deleteTask = taskId =>
-  fetch(`${baseUrl}/${taskId}`, {
-    method: 'DELETE'
-  }).then(res => {
-    if (!res.ok) {
-      throw new Error('Failed to delete task')
+export const deleteTask = taskId => {
+  return fetch(`${baseUrl}/${taskId}`, {
+    method: 'DELETE',
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error("fail to delete task");
     }
-  }); 
+  })
+};
