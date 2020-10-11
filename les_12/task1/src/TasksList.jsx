@@ -1,4 +1,6 @@
 import React from "react";
+import Task from "./Task";
+import CreateTaskInput from "./CreateTaskInput";
 
 
 
@@ -30,34 +32,68 @@ class TasksList extends React.Component {
         "text": "Direct Web Architect",
         "done": false
       },
-      {
-        "id": "6",
-        "text": "Global Accountability Engineer",
-        "done": false
-      },
-      {
-        "id": "7",
-        "text": "Senior Infrastructure Engineer",
-        "done": false
-      },
     ]
   }
 
+  //метод принимает текст из инпута(CreateTaskInput)
+  onCreate = text => {
+    const newTask = {
+      id: Math.random(),
+      text,
+      done: false,
+    };
+
+    // и полученные свойства добавляем в существующий массив задач
+    const { tasks } = this.state;
+    const updatedTasks = tasks.concat(newTask);
+    this.setState({ tasks: updatedTasks });
+  }
+
+  //метод зачёркивает задачу
+  handleTaskStatusChange = (id) => {
+    //1. найти задачу в списке
+    //2. переключить вкл/выкл
+    //3. сохранить обновлённый список
+    const updatedTasks = this.state.tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          done: !task.done
+        }
+      }
+      return task;
+    });
+    //результат метода сохраняем в состояние
+    this.setState({ tasks: updatedTasks });
+  }
+
+  //метод удаления задачи
+  handleTaskDelete = (id) => {
+    //1. фильтруем задачи
+    //2. обновляем список задач
+    const updatedTasks = this.state.tasks
+      .filter(task => task.id !== id);
+    //результат метода сохраняем в состояние
+    this.setState({ tasks: updatedTasks });
+  }
+
+
   render() {
+
+    const sortedList = this.state.tasks
+      .slice()
+      .sort((a, b) => a.done - b.done);
 
     return (
       <main className="todo-list">
+        <CreateTaskInput onCreate={this.onCreate} />
         <ul className="list">
-          {this.state.tasks.map(task => (
-            <li key={task.id} className="list-item">
-              <input
-                type="checkbox"
-                className="list-item__checkbox"
-                defaultChecked={task.done}
-              />
-              {task.text}
-              <button className="list-item__delete-btn"></button>
-            </li>
+          {sortedList.map(task => (
+            <Task key={task.id}
+              {...task}
+              onDelete={this.handleTaskDelete}
+              onChange={this.handleTaskStatusChange}
+            />
           ))}
 
         </ul>

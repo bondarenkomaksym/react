@@ -1,41 +1,47 @@
 import React from "react";
 
-class CreateTaskInput extends React.PureComponent {
+class CreateTaskInput extends React.Component {
+
+  //создаём state с пустой строкой для записи туда текста из инпута
   state = {
     value: '',
   }
 
-  handleCreateTaskInputChange = e =>
+  //через обработчик пробрасываем введённый текст в в сам инпут
+  handleChange = (event) => {
     this.setState({
-      value: e.target.value
+      value: event.target.value,
     })
+  }
 
-  handleAddTodo = () => {
-    this.props.handleAddTodo(this.state.value);
+  //создаём обработчик-колбэк для передачи текста из инпута в новый объект-задание в списке задач и через setState очищаем инпут после ввода текста
+  handleTaskCreate = () => {
+    this.props.onCreate(this.state.value);
     this.setState({ value: '' })
   }
 
+
   render() {
-    const { value } = this.state;
     return (
       <div className="create-task">
         <input
+          value={this.state.value}
           className="create-task__input"
           type="text"
-          value={value}
-          onChange={this.handleCreateTaskInputChange}
+          onChange={this.handleChange}
         />
         <button
           className="btn create-task__btn"
-          onClick={() => this.handleAddTodo(value)}
+          onClick={this.handleTaskCreate}
         >Create</button>
       </div>
     )
   }
 }
 
-CreateTaskInput.propTypes = {
-  handleAddTodo: PropTypes.func.isRequired
-}
 
 export default CreateTaskInput;
+
+// 1. текст из инпута
+// 2. создать таск с этим текстом
+// 3. добавить объект с этим текстом в список
