@@ -1,15 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class PageNotFound extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    return nextProps.number % 2 === 0;
-  }
 
   render() {
     return (
-      <div className="number">
-        <span className="number__title">{this.props.title}</span>
-        <span className="number__value">{this.props.number}</span>
+      <div className="page__content">
+        <h1>😢</h1>
+        <Link to="/">Go home</Link>
       </div>
     );
   }
