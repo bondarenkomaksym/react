@@ -6,7 +6,7 @@ function Product() {
   const { productId } = useParams();
   return (
     <div className="product" >
-      {`Product is a ${productId}`}
+      {productId}
     </div>
   )
 
