@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 class User extends React.Component {
+
   state = {
     userData: null,
   }
 
   componentDidMount() {
+
     // debugger;
     fetch(`https://api.github.com/users/${this.props.match.params.userId}`)
       .then((response) => {
@@ -23,6 +25,10 @@ class User extends React.Component {
   }
 
   componentDidUpdate(prevState) {
+
+    // if (this.state.userData === prevState.userData) {
+    //   return null;
+    // }
     if (this.state.userData !== prevState.userData) {
       fetch(`https://api.github.com/users/${this.props.match.params.userId}`)
         .then((response) => {
@@ -36,10 +42,6 @@ class User extends React.Component {
           })
         })
     }
-  }
-
-  componentWillUnmount() {
-
   }
 
   render() {
