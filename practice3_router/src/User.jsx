@@ -24,12 +24,12 @@ class User extends React.Component {
       })
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps) {
 
     // if (this.state.userData === prevState.userData) {
     //   return null;
     // }
-    if (this.state.userData !== prevState.userData) {
+    if (this.props.userId !== prevProps.userId) {
       fetch(`https://api.github.com/users/${this.props.match.params.userId}`)
         .then((response) => {
           if (response.ok) {
@@ -43,6 +43,7 @@ class User extends React.Component {
         })
     }
   }
+
 
   render() {
     if (!this.state.userData) {
