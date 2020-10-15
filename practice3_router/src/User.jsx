@@ -26,9 +26,6 @@ class User extends React.Component {
 
   componentDidUpdate(prevProps) {
 
-    // if (this.state.userData === prevState.userData) {
-    //   return null;
-    // }
     if (this.props.userId !== prevProps.userId) {
       fetch(`https://api.github.com/users/${this.props.match.params.userId}`)
         .then((response) => {
